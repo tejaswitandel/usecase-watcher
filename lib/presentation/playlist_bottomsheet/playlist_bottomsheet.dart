@@ -1,13 +1,18 @@
 import '../playlist_bottomsheet/widgets/songdetails_item_widget.dart';
+import 'controller/playlist_controller.dart';
+import 'models/songdetails_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 
-// ignore_for_file: must_be_immutable
 class PlaylistBottomsheet extends StatelessWidget {
-  const PlaylistBottomsheet({Key? key})
-      : super(
+  PlaylistBottomsheet(
+    this.controller, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  PlaylistController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -40,21 +45,28 @@ class PlaylistBottomsheet extends StatelessWidget {
           ),
           SizedBox(height: 35.v),
           Expanded(
-            child: ListView.separated(
-              physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              separatorBuilder: (
-                context,
-                index,
-              ) {
-                return SizedBox(
-                  height: 18.v,
-                );
-              },
-              itemCount: 8,
-              itemBuilder: (context, index) {
-                return SongdetailsItemWidget();
-              },
+            child: Obx(
+              () => ListView.separated(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                separatorBuilder: (
+                  context,
+                  index,
+                ) {
+                  return SizedBox(
+                    height: 18.v,
+                  );
+                },
+                itemCount: controller
+                    .playlistModelObj.value.songdetailsItemList.value.length,
+                itemBuilder: (context, index) {
+                  SongdetailsItemModel model = controller
+                      .playlistModelObj.value.songdetailsItemList.value[index];
+                  return SongdetailsItemWidget(
+                    model,
+                  );
+                },
+              ),
             ),
           ),
           SizedBox(height: 55.v),

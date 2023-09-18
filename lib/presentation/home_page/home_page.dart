@@ -1,3 +1,5 @@
+import 'controller/home_controller.dart';
+import 'models/home_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image_1.dart';
@@ -5,12 +7,13 @@ import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_title.dart
 import 'package:tejaswitandel_s_application149/widgets/app_bar/custom_app_bar.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_elevated_button.dart';
 
-// ignore_for_file: must_be_immutable
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key})
+  HomePage({Key? key})
       : super(
           key: key,
         );
+
+  HomeController controller = Get.put(HomeController(HomeModel().obs));
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class HomePage extends StatelessWidget {
         appBar: CustomAppBar(
           centerTitle: true,
           title: AppbarTitle(
-            text: "Dashboard",
+            text: "lbl_dashboard".tr,
           ),
           actions: [
             AppbarImage1(
@@ -43,25 +46,25 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Listen to music",
+                    "lbl_listen_to_music".tr,
                     style: theme.textTheme.headlineMedium,
                   ),
                   SizedBox(height: 1.v),
                   Text(
-                    "without restrictions",
+                    "msg_without_restrictions".tr,
                     style: theme.textTheme.headlineMedium,
                   ),
                   SizedBox(height: 44.v),
                   CustomElevatedButton(
                     height: 42.v,
                     width: 236.h,
-                    text: "Trial version",
+                    text: "lbl_trial_version".tr,
                     buttonStyle: CustomButtonStyles.fillWhiteA,
                     buttonTextStyle: CustomTextStyles.bodyLargeBlack900,
                   ),
                   SizedBox(height: 40.v),
                   Text(
-                    "Free for 3 months, then 12 a month",
+                    "msg_free_for_3_months".tr,
                     style: theme.textTheme.bodyMedium,
                   ),
                   Padding(
@@ -74,7 +77,7 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "New releases",
+                          "lbl_new_releases".tr,
                           style: CustomTextStyles.headlineMediumBold,
                         ),
                         Padding(
@@ -83,7 +86,7 @@ class HomePage extends StatelessWidget {
                             bottom: 8.v,
                           ),
                           child: Text(
-                            "View All",
+                            "lbl_view_all".tr,
                             style: theme.textTheme.bodyMedium,
                           ),
                         ),
@@ -112,12 +115,12 @@ class HomePage extends StatelessWidget {
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                "Urgent Siege",
+                                "lbl_urgent_siege".tr,
                                 style: theme.textTheme.titleMedium,
                               ),
                               SizedBox(height: 2.v),
                               Text(
-                                "Damned Anthem",
+                                "lbl_damned_anthem".tr,
                                 style: theme.textTheme.bodyMedium,
                               ),
                             ],
@@ -142,12 +145,12 @@ class HomePage extends StatelessWidget {
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                "Urgent Siege",
+                                "lbl_urgent_siege".tr,
                                 style: theme.textTheme.titleMedium,
                               ),
                               SizedBox(height: 2.v),
                               Text(
-                                "Damned Anthem",
+                                "lbl_damned_anthem".tr,
                                 style: theme.textTheme.bodyMedium,
                               ),
                             ],

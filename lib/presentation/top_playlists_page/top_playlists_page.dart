@@ -1,4 +1,7 @@
 import '../top_playlists_page/widgets/userplaylist_item_widget.dart';
+import 'controller/top_playlists_controller.dart';
+import 'models/top_playlists_model.dart';
+import 'models/userplaylist_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image.dart';
@@ -6,8 +9,12 @@ import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image_1.da
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_title.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/custom_app_bar.dart';
 
+// ignore_for_file: must_be_immutable
 class TopPlaylistsPage extends StatelessWidget {
-  const TopPlaylistsPage({Key? key}) : super(key: key);
+  TopPlaylistsPage({Key? key}) : super(key: key);
+
+  TopPlaylistsController controller =
+      Get.put(TopPlaylistsController(TopPlaylistsModel().obs));
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +28,10 @@ class TopPlaylistsPage extends StatelessWidget {
                     margin:
                         EdgeInsets.only(left: 30.h, top: 19.v, bottom: 18.v),
                     onTap: () {
-                      onTapArrowleftone(context);
+                      onTapArrowleftone();
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Top Playlists"),
+                title: AppbarTitle(text: "lbl_top_playlists".tr),
                 actions: [
                   AppbarImage1(
                       svgPath: ImageConstant.imgMenu,
@@ -32,23 +39,29 @@ class TopPlaylistsPage extends StatelessWidget {
                 ]),
             body: Padding(
                 padding: EdgeInsets.only(left: 12.h, top: 8.v, right: 12.h),
-                child: ListView.separated(
+                child: Obx(() => ListView.separated(
                     physics: BouncingScrollPhysics(),
                     shrinkWrap: true,
                     separatorBuilder: (context, index) {
                       return SizedBox(height: 18.v);
                     },
-                    itemCount: 3,
+                    itemCount: controller.topPlaylistsModelObj.value
+                        .userplaylistItemList.value.length,
                     itemBuilder: (context, index) {
-                      return UserplaylistItemWidget();
-                    }))));
+                      UserplaylistItemModel model = controller
+                          .topPlaylistsModelObj
+                          .value
+                          .userplaylistItemList
+                          .value[index];
+                      return UserplaylistItemWidget(model);
+                    })))));
   }
 
-  /// Navigates back to the previous screen.
+  /// Navigates to the previous screen.
   ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
-  onTapArrowleftone(BuildContext context) {
-    Navigator.pop(context);
+  /// When the action is triggered, this function uses the [Get] package to
+  /// navigate to the previous screen in the navigation stack.
+  onTapArrowleftone() {
+    Get.back();
   }
 }

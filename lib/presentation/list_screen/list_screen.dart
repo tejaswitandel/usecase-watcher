@@ -1,4 +1,6 @@
 import '../list_screen/widgets/songdetails2_item_widget.dart';
+import 'controller/list_controller.dart';
+import 'models/songdetails2_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image.dart';
@@ -7,7 +9,7 @@ import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_title.dart
 import 'package:tejaswitandel_s_application149/widgets/app_bar/custom_app_bar.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_icon_button.dart';
 
-class ListScreen extends StatelessWidget {
+class ListScreen extends GetWidget<ListController> {
   const ListScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,10 +24,10 @@ class ListScreen extends StatelessWidget {
                     margin:
                         EdgeInsets.only(left: 30.h, top: 19.v, bottom: 18.v),
                     onTap: () {
-                      onTapArrowleftone(context);
+                      onTapArrowleftone();
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Playlists"),
+                title: AppbarTitle(text: "lbl_playlists".tr),
                 actions: [
                   AppbarImage1(
                       svgPath: ImageConstant.imgMenu,
@@ -42,10 +44,11 @@ class ListScreen extends StatelessWidget {
                           color: appTheme.redA200,
                           borderRadius: BorderRadius.circular(68.h))),
                   SizedBox(height: 4.v),
-                  Text("Renaissance", style: theme.textTheme.headlineMedium),
+                  Text("lbl_renaissance".tr,
+                      style: theme.textTheme.headlineMedium),
                   SizedBox(height: 8.v),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Text("843 tracks", style: theme.textTheme.bodyLarge),
+                    Text("lbl_843_tracks".tr, style: theme.textTheme.bodyLarge),
                     Opacity(
                         opacity: 0.648,
                         child: Container(
@@ -58,8 +61,8 @@ class ListScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(1.h)))),
                     Padding(
                         padding: EdgeInsets.only(left: 5.h),
-                        child:
-                            Text("23 hours", style: theme.textTheme.bodyLarge))
+                        child: Text("lbl_23_hours".tr,
+                            style: theme.textTheme.bodyLarge))
                   ]),
                   SizedBox(height: 20.v),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -86,24 +89,30 @@ class ListScreen extends StatelessWidget {
                   ]),
                   Spacer(),
                   Expanded(
-                      child: ListView.separated(
+                      child: Obx(() => ListView.separated(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           separatorBuilder: (context, index) {
                             return SizedBox(height: 19.v);
                           },
-                          itemCount: 3,
+                          itemCount: controller.listModelObj.value
+                              .songdetails2ItemList.value.length,
                           itemBuilder: (context, index) {
-                            return Songdetails2ItemWidget();
-                          }))
+                            Songdetails2ItemModel model = controller
+                                .listModelObj
+                                .value
+                                .songdetails2ItemList
+                                .value[index];
+                            return Songdetails2ItemWidget(model);
+                          })))
                 ]))));
   }
 
-  /// Navigates back to the previous screen.
+  /// Navigates to the previous screen.
   ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
-  onTapArrowleftone(BuildContext context) {
-    Navigator.pop(context);
+  /// When the action is triggered, this function uses the [Get] package to
+  /// navigate to the previous screen in the navigation stack.
+  onTapArrowleftone() {
+    Get.back();
   }
 }

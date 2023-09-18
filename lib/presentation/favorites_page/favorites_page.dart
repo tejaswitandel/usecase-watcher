@@ -1,3 +1,5 @@
+import 'controller/favorites_controller.dart';
+import 'models/favorites_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image.dart';
@@ -5,8 +7,12 @@ import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image_1.da
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_title.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/custom_app_bar.dart';
 
+// ignore_for_file: must_be_immutable
 class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({Key? key}) : super(key: key);
+  FavoritesPage({Key? key}) : super(key: key);
+
+  FavoritesController controller =
+      Get.put(FavoritesController(FavoritesModel().obs));
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +26,10 @@ class FavoritesPage extends StatelessWidget {
                     margin:
                         EdgeInsets.only(left: 30.h, top: 21.v, bottom: 16.v),
                     onTap: () {
-                      onTapArrowleftone(context);
+                      onTapArrowleftone();
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Favourites"),
+                title: AppbarTitle(text: "lbl_favourites".tr),
                 actions: [
                   AppbarImage1(
                       svgPath: ImageConstant.imgMenu,
@@ -50,11 +56,11 @@ class FavoritesPage extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("Did you like it",
+                                      Text("lbl_did_you_like_it".tr,
                                           style:
                                               theme.textTheme.headlineMedium),
                                       SizedBox(height: 3.v),
-                                      Text("843 tracks",
+                                      Text("lbl_843_tracks".tr,
                                           style: theme.textTheme.bodyLarge)
                                     ])),
                             CustomImageView(
@@ -81,7 +87,7 @@ class FavoritesPage extends StatelessWidget {
                               Padding(
                                   padding:
                                       EdgeInsets.only(top: 1.v, bottom: 5.v),
-                                  child: Text("Tracks",
+                                  child: Text("lbl_tracks".tr,
                                       style: theme.textTheme.bodyLarge))
                             ])),
                     SizedBox(height: 8.v),
@@ -101,7 +107,7 @@ class FavoritesPage extends StatelessWidget {
                               Padding(
                                   padding:
                                       EdgeInsets.only(top: 1.v, bottom: 5.v),
-                                  child: Text("Artist",
+                                  child: Text("lbl_artist".tr,
                                       style: theme.textTheme.bodyLarge))
                             ])),
                     SizedBox(height: 8.v),
@@ -121,7 +127,7 @@ class FavoritesPage extends StatelessWidget {
                               Padding(
                                   padding:
                                       EdgeInsets.only(top: 1.v, bottom: 4.v),
-                                  child: Text("Album",
+                                  child: Text("lbl_album".tr,
                                       style: theme.textTheme.bodyLarge))
                             ])),
                     SizedBox(height: 8.v),
@@ -135,7 +141,7 @@ class FavoritesPage extends StatelessWidget {
                               height: 18.v,
                               width: 25.h,
                               margin: EdgeInsets.only(top: 1.v)),
-                          Text("Playlists",
+                          Text("lbl_playlists".tr,
                               style: CustomTextStyles.titleMediumBold)
                         ])),
                     SizedBox(height: 8.v),
@@ -153,7 +159,7 @@ class FavoritesPage extends StatelessWidget {
                                   width: 23.adaptSize),
                               Padding(
                                   padding: EdgeInsets.only(bottom: 4.v),
-                                  child: Text("Download",
+                                  child: Text("lbl_download".tr,
                                       style: CustomTextStyles.titleMediumBold))
                             ]))
                   ]),
@@ -161,11 +167,11 @@ class FavoritesPage extends StatelessWidget {
                 ]))));
   }
 
-  /// Navigates back to the previous screen.
+  /// Navigates to the previous screen.
   ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
-  onTapArrowleftone(BuildContext context) {
-    Navigator.pop(context);
+  /// When the action is triggered, this function uses the [Get] package to
+  /// navigate to the previous screen in the navigation stack.
+  onTapArrowleftone() {
+    Get.back();
   }
 }

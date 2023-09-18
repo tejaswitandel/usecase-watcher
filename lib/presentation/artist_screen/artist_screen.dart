@@ -1,3 +1,4 @@
+import 'controller/artist_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image.dart';
@@ -6,7 +7,7 @@ import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_title.dart
 import 'package:tejaswitandel_s_application149/widgets/app_bar/custom_app_bar.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_icon_button.dart';
 
-class ArtistScreen extends StatelessWidget {
+class ArtistScreen extends GetWidget<ArtistController> {
   const ArtistScreen({Key? key}) : super(key: key);
 
   @override
@@ -21,10 +22,10 @@ class ArtistScreen extends StatelessWidget {
                     margin:
                         EdgeInsets.only(left: 30.h, top: 21.v, bottom: 16.v),
                     onTap: () {
-                      onTapArrowleftone(context);
+                      onTapArrowleftone();
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Renaissance"),
+                title: AppbarTitle(text: "lbl_renaissance".tr),
                 actions: [
                   AppbarImage1(
                       svgPath: ImageConstant.imgMenu,
@@ -44,10 +45,11 @@ class ArtistScreen extends StatelessWidget {
                       child:
                           CustomImageView(svgPath: ImageConstant.imgBookmark)),
                   SizedBox(height: 8.v),
-                  Text("Renaissance", style: theme.textTheme.headlineMedium),
+                  Text("lbl_renaissance".tr,
+                      style: theme.textTheme.headlineMedium),
                   SizedBox(height: 9.v),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Text("843 tracks", style: theme.textTheme.bodyLarge),
+                    Text("lbl_843_tracks".tr, style: theme.textTheme.bodyLarge),
                     Opacity(
                         opacity: 0.648,
                         child: Container(
@@ -60,8 +62,8 @@ class ArtistScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(1.h)))),
                     Padding(
                         padding: EdgeInsets.only(left: 5.h),
-                        child:
-                            Text("23 albums", style: theme.textTheme.bodyLarge))
+                        child: Text("lbl_23_albums".tr,
+                            style: theme.textTheme.bodyLarge))
                   ]),
                   Padding(
                       padding: EdgeInsets.only(left: 3.h, top: 89.v),
@@ -84,11 +86,11 @@ class ArtistScreen extends StatelessWidget {
                                                       BorderRadius.circular(
                                                           12.h))),
                                           SizedBox(height: 4.v),
-                                          Text("Urgent Siege",
+                                          Text("lbl_urgent_siege".tr,
                                               style:
                                                   theme.textTheme.titleMedium),
                                           SizedBox(height: 2.v),
-                                          Text("Damned Anthem",
+                                          Text("lbl_damned_anthem".tr,
                                               style: theme.textTheme.bodyMedium)
                                         ]))),
                             Expanded(
@@ -107,22 +109,22 @@ class ArtistScreen extends StatelessWidget {
                                                       BorderRadius.circular(
                                                           12.h))),
                                           SizedBox(height: 4.v),
-                                          Text("Urgent Siege",
+                                          Text("lbl_urgent_siege".tr,
                                               style:
                                                   theme.textTheme.titleMedium),
                                           SizedBox(height: 2.v),
-                                          Text("Damned Anthem",
+                                          Text("lbl_damned_anthem".tr,
                                               style: theme.textTheme.bodyMedium)
                                         ])))
                           ]))
                 ]))));
   }
 
-  /// Navigates back to the previous screen.
+  /// Navigates to the previous screen.
   ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
-  onTapArrowleftone(BuildContext context) {
-    Navigator.pop(context);
+  /// When the action is triggered, this function uses the [Get] package to
+  /// navigate to the previous screen in the navigation stack.
+  onTapArrowleftone() {
+    Get.back();
   }
 }

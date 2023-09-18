@@ -1,12 +1,20 @@
+import '../controller/albums_controller.dart';
+import '../models/albumdetails_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 
 // ignore: must_be_immutable
 class AlbumdetailsItemWidget extends StatelessWidget {
-  const AlbumdetailsItemWidget({Key? key})
-      : super(
+  AlbumdetailsItemWidget(
+    this.albumdetailsItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  AlbumdetailsItemModel albumdetailsItemModelObj;
+
+  var controller = Get.find<AlbumsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +40,24 @@ class AlbumdetailsItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Flower Power",
-                style: theme.textTheme.titleMedium,
+              Obx(
+                () => Text(
+                  albumdetailsItemModelObj.songName!.value,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleMedium,
+                ),
               ),
               SizedBox(height: 6.v),
-              Text(
-                "Ray Charles",
-                style: theme.textTheme.bodyLarge,
+              Obx(
+                () => Text(
+                  albumdetailsItemModelObj.artistName!.value,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyLarge,
+                ),
               ),
               SizedBox(height: 3.v),
               Text(
-                "2018",
+                "lbl_2018".tr,
                 style: theme.textTheme.bodyLarge,
               ),
             ],

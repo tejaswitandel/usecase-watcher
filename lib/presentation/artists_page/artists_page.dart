@@ -1,4 +1,7 @@
 import '../artists_page/widgets/artistprofile_item_widget.dart';
+import 'controller/artists_controller.dart';
+import 'models/artistprofile_item_model.dart';
+import 'models/artists_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image.dart';
@@ -6,8 +9,11 @@ import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image_1.da
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_title.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/custom_app_bar.dart';
 
+// ignore_for_file: must_be_immutable
 class ArtistsPage extends StatelessWidget {
-  const ArtistsPage({Key? key}) : super(key: key);
+  ArtistsPage({Key? key}) : super(key: key);
+
+  ArtistsController controller = Get.put(ArtistsController(ArtistsModel().obs));
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +27,10 @@ class ArtistsPage extends StatelessWidget {
                     margin:
                         EdgeInsets.only(left: 30.h, top: 21.v, bottom: 16.v),
                     onTap: () {
-                      onTapArrowleftone(context);
+                      onTapArrowleftone();
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Artists"),
+                title: AppbarTitle(text: "lbl_artists".tr),
                 actions: [
                   AppbarImage1(
                       svgPath: ImageConstant.imgMenu,
@@ -32,23 +38,26 @@ class ArtistsPage extends StatelessWidget {
                 ]),
             body: Padding(
                 padding: EdgeInsets.only(left: 30.h, top: 16.v, right: 30.h),
-                child: ListView.separated(
+                child: Obx(() => ListView.separated(
                     physics: BouncingScrollPhysics(),
                     shrinkWrap: true,
                     separatorBuilder: (context, index) {
                       return SizedBox(height: 17.v);
                     },
-                    itemCount: 6,
+                    itemCount: controller.artistsModelObj.value
+                        .artistprofileItemList.value.length,
                     itemBuilder: (context, index) {
-                      return ArtistprofileItemWidget();
-                    }))));
+                      ArtistprofileItemModel model = controller.artistsModelObj
+                          .value.artistprofileItemList.value[index];
+                      return ArtistprofileItemWidget(model);
+                    })))));
   }
 
-  /// Navigates back to the previous screen.
+  /// Navigates to the previous screen.
   ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
-  onTapArrowleftone(BuildContext context) {
-    Navigator.pop(context);
+  /// When the action is triggered, this function uses the [Get] package to
+  /// navigate to the previous screen in the navigation stack.
+  onTapArrowleftone() {
+    Get.back();
   }
 }

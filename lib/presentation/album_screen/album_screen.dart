@@ -1,4 +1,6 @@
 import '../album_screen/widgets/songdetails1_item_widget.dart';
+import 'controller/album_controller.dart';
+import 'models/songdetails1_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image.dart';
@@ -7,7 +9,7 @@ import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_title.dart
 import 'package:tejaswitandel_s_application149/widgets/app_bar/custom_app_bar.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_icon_button.dart';
 
-class AlbumScreen extends StatelessWidget {
+class AlbumScreen extends GetWidget<AlbumController> {
   const AlbumScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,10 +24,10 @@ class AlbumScreen extends StatelessWidget {
                     margin:
                         EdgeInsets.only(left: 30.h, top: 19.v, bottom: 18.v),
                     onTap: () {
-                      onTapArrowleftone(context);
+                      onTapArrowleftone();
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Wunder King"),
+                title: AppbarTitle(text: "lbl_wunder_king".tr),
                 actions: [
                   AppbarImage1(
                       svgPath: ImageConstant.imgMenu,
@@ -40,13 +42,14 @@ class AlbumScreen extends StatelessWidget {
                       height: 100.adaptSize,
                       width: 100.adaptSize),
                   SizedBox(height: 41.v),
-                  Text("Wunder King", style: theme.textTheme.headlineMedium),
+                  Text("lbl_wunder_king".tr,
+                      style: theme.textTheme.headlineMedium),
                   SizedBox(height: 6.v),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Элджей", style: theme.textTheme.bodyLarge),
+                        Text("lbl".tr, style: theme.textTheme.bodyLarge),
                         Opacity(
                             opacity: 0.648,
                             child: Container(
@@ -59,8 +62,8 @@ class AlbumScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(1.h)))),
                         Padding(
                             padding: EdgeInsets.only(left: 5.h),
-                            child:
-                                Text("2018", style: theme.textTheme.bodyLarge))
+                            child: Text("lbl_2018".tr,
+                                style: theme.textTheme.bodyLarge))
                       ]),
                   SizedBox(height: 22.v),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -87,24 +90,30 @@ class AlbumScreen extends StatelessWidget {
                   ]),
                   SizedBox(height: 26.v),
                   Expanded(
-                      child: ListView.separated(
+                      child: Obx(() => ListView.separated(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           separatorBuilder: (context, index) {
                             return SizedBox(height: 18.v);
                           },
-                          itemCount: 4,
+                          itemCount: controller.albumModelObj.value
+                              .songdetails1ItemList.value.length,
                           itemBuilder: (context, index) {
-                            return Songdetails1ItemWidget();
-                          }))
+                            Songdetails1ItemModel model = controller
+                                .albumModelObj
+                                .value
+                                .songdetails1ItemList
+                                .value[index];
+                            return Songdetails1ItemWidget(model);
+                          })))
                 ]))));
   }
 
-  /// Navigates back to the previous screen.
+  /// Navigates to the previous screen.
   ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
-  onTapArrowleftone(BuildContext context) {
-    Navigator.pop(context);
+  /// When the action is triggered, this function uses the [Get] package to
+  /// navigate to the previous screen in the navigation stack.
+  onTapArrowleftone() {
+    Get.back();
   }
 }

@@ -2,11 +2,9 @@
 /.idea/
 /build/
 /.vscode/
-
-/.flutter-plugins
-/.flutter-plugins-dependencies
-/.packages
-/ios/Podfile
-/pubspec.lock
+!/pubspec.lock
+!/.packages
+!/.flutter-plugins-dependencies
+!/.flutter-plugins
 .git.zip
 .git

@@ -1,12 +1,20 @@
+import '../controller/playlist_controller.dart';
+import '../models/songdetails_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 
 // ignore: must_be_immutable
 class SongdetailsItemWidget extends StatelessWidget {
-  const SongdetailsItemWidget({Key? key})
-      : super(
+  SongdetailsItemWidget(
+    this.songdetailsItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  SongdetailsItemModel songdetailsItemModelObj;
+
+  var controller = Get.find<PlaylistController>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +41,20 @@ class SongdetailsItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Flashbacks",
-                style: theme.textTheme.titleMedium,
+              Obx(
+                () => Text(
+                  songdetailsItemModelObj.flashbacksText!.value,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleMedium,
+                ),
               ),
               SizedBox(height: 4.v),
-              Text(
-                "Emika",
-                style: theme.textTheme.bodyMedium,
+              Obx(
+                () => Text(
+                  songdetailsItemModelObj.emikaText!.value,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium,
+                ),
               ),
             ],
           ),

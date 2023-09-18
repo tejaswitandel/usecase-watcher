@@ -1,12 +1,20 @@
+import '../controller/album_controller.dart';
+import '../models/songdetails1_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 
 // ignore: must_be_immutable
 class Songdetails1ItemWidget extends StatelessWidget {
-  const Songdetails1ItemWidget({Key? key})
-      : super(
+  Songdetails1ItemWidget(
+    this.songdetails1ItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  Songdetails1ItemModel songdetails1ItemModelObj;
+
+  var controller = Get.find<AlbumController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +32,12 @@ class Songdetails1ItemWidget extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Padding(
                   padding: EdgeInsets.only(left: 8.h),
-                  child: Text(
-                    "1",
-                    style: theme.textTheme.titleMedium,
+                  child: Obx(
+                    () => Text(
+                      songdetails1ItemModelObj.count!.value,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleMedium,
+                    ),
                   ),
                 ),
               ),
@@ -54,14 +65,20 @@ class Songdetails1ItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Burning",
-                style: theme.textTheme.titleMedium,
+              Obx(
+                () => Text(
+                  songdetails1ItemModelObj.burning!.value,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleMedium,
+                ),
               ),
               SizedBox(height: 3.v),
-              Text(
-                "Podval Caplella",
-                style: theme.textTheme.bodyMedium,
+              Obx(
+                () => Text(
+                  songdetails1ItemModelObj.podvalCaplella!.value,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium,
+                ),
               ),
             ],
           ),

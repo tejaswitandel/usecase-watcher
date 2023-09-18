@@ -1,4 +1,6 @@
 import '../albums_screen/widgets/albumdetails_item_widget.dart';
+import 'controller/albums_controller.dart';
+import 'models/albumdetails_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image.dart';
@@ -6,7 +8,7 @@ import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_image_1.da
 import 'package:tejaswitandel_s_application149/widgets/app_bar/appbar_title.dart';
 import 'package:tejaswitandel_s_application149/widgets/app_bar/custom_app_bar.dart';
 
-class AlbumsScreen extends StatelessWidget {
+class AlbumsScreen extends GetWidget<AlbumsController> {
   const AlbumsScreen({Key? key}) : super(key: key);
 
   @override
@@ -21,10 +23,10 @@ class AlbumsScreen extends StatelessWidget {
                     margin:
                         EdgeInsets.only(left: 30.h, top: 20.v, bottom: 17.v),
                     onTap: () {
-                      onTapArrowleftone(context);
+                      onTapArrowleftone();
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Albums"),
+                title: AppbarTitle(text: "lbl_albums".tr),
                 actions: [
                   AppbarImage1(
                       svgPath: ImageConstant.imgMenu,
@@ -32,23 +34,26 @@ class AlbumsScreen extends StatelessWidget {
                 ]),
             body: Padding(
                 padding: EdgeInsets.only(left: 30.h, top: 23.v, right: 30.h),
-                child: ListView.separated(
+                child: Obx(() => ListView.separated(
                     physics: BouncingScrollPhysics(),
                     shrinkWrap: true,
                     separatorBuilder: (context, index) {
                       return SizedBox(height: 17.v);
                     },
-                    itemCount: 6,
+                    itemCount: controller
+                        .albumsModelObj.value.albumdetailsItemList.value.length,
                     itemBuilder: (context, index) {
-                      return AlbumdetailsItemWidget();
-                    }))));
+                      AlbumdetailsItemModel model = controller.albumsModelObj
+                          .value.albumdetailsItemList.value[index];
+                      return AlbumdetailsItemWidget(model);
+                    })))));
   }
 
-  /// Navigates back to the previous screen.
+  /// Navigates to the previous screen.
   ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
-  onTapArrowleftone(BuildContext context) {
-    Navigator.pop(context);
+  /// When the action is triggered, this function uses the [Get] package to
+  /// navigate to the previous screen in the navigation stack.
+  onTapArrowleftone() {
+    Get.back();
   }
 }

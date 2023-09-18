@@ -1,13 +1,21 @@
+import '../controller/top_playlists_controller.dart';
+import '../models/userplaylist_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_icon_button.dart';
 
 // ignore: must_be_immutable
 class UserplaylistItemWidget extends StatelessWidget {
-  const UserplaylistItemWidget({Key? key})
-      : super(
+  UserplaylistItemWidget(
+    this.userplaylistItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  UserplaylistItemModel userplaylistItemModelObj;
+
+  var controller = Get.find<TopPlaylistsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +45,18 @@ class UserplaylistItemWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 39.v),
-                Text(
-                  "Renaissance",
-                  style: theme.textTheme.headlineMedium,
+                Obx(
+                  () => Text(
+                    userplaylistItemModelObj.playlistName!.value,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.headlineMedium,
+                  ),
                 ),
                 SizedBox(height: 5.v),
                 Row(
                   children: [
                     Text(
-                      "843 tracks",
+                      "lbl_843_tracks".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                     Opacity(
@@ -69,7 +80,7 @@ class UserplaylistItemWidget extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 5.h),
                       child: Text(
-                        "23 hours",
+                        "lbl_23_hours".tr,
                         style: theme.textTheme.bodyLarge,
                       ),
                     ),

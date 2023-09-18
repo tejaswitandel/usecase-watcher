@@ -1,12 +1,20 @@
+import '../controller/song_menu_full_controller.dart';
+import '../models/addtoplaylist_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 
 // ignore: must_be_immutable
 class AddtoplaylistItemWidget extends StatelessWidget {
-  const AddtoplaylistItemWidget({Key? key})
-      : super(
+  AddtoplaylistItemWidget(
+    this.addtoplaylistItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  AddtoplaylistItemModel addtoplaylistItemModelObj;
+
+  var controller = Get.find<SongMenuFullController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +40,12 @@ class AddtoplaylistItemWidget extends StatelessWidget {
               top: 3.v,
               bottom: 3.v,
             ),
-            child: Text(
-              "Add to Playlist",
-              style: theme.textTheme.bodyLarge,
+            child: Obx(
+              () => Text(
+                addtoplaylistItemModelObj.addtoplaylist!.value,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodyLarge,
+              ),
             ),
           ),
         ],

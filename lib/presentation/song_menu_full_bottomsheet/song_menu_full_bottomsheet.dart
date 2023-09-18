@@ -1,14 +1,19 @@
 import '../song_menu_full_bottomsheet/widgets/addtoplaylist_item_widget.dart';
+import 'controller/song_menu_full_controller.dart';
+import 'models/addtoplaylist_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_icon_button.dart';
 
-// ignore_for_file: must_be_immutable
 class SongMenuFullBottomsheet extends StatelessWidget {
-  const SongMenuFullBottomsheet({Key? key})
-      : super(
+  SongMenuFullBottomsheet(
+    this.controller, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  SongMenuFullController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +74,7 @@ class SongMenuFullBottomsheet extends StatelessWidget {
                     ),
                     SizedBox(height: 7.v),
                     Text(
-                      "Renaissance",
+                      "lbl_renaissance".tr,
                       style: theme.textTheme.titleMedium,
                     ),
                     SizedBox(height: 6.v),
@@ -78,7 +83,7 @@ class SongMenuFullBottomsheet extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Podval Caplella",
+                          "lbl_podval_caplella".tr,
                           style: theme.textTheme.bodyMedium,
                         ),
                         Opacity(
@@ -102,7 +107,7 @@ class SongMenuFullBottomsheet extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 6.h),
                           child: Text(
-                            "3:43",
+                            "lbl_3_43".tr,
                             style: theme.textTheme.bodyMedium,
                           ),
                         ),
@@ -124,21 +129,28 @@ class SongMenuFullBottomsheet extends StatelessWidget {
           ),
           SizedBox(height: 29.v),
           Expanded(
-            child: ListView.separated(
-              physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              separatorBuilder: (
-                context,
-                index,
-              ) {
-                return SizedBox(
-                  height: 7.v,
-                );
-              },
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return AddtoplaylistItemWidget();
-              },
+            child: Obx(
+              () => ListView.separated(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                separatorBuilder: (
+                  context,
+                  index,
+                ) {
+                  return SizedBox(
+                    height: 7.v,
+                  );
+                },
+                itemCount: controller.songMenuFullModelObj.value
+                    .addtoplaylistItemList.value.length,
+                itemBuilder: (context, index) {
+                  AddtoplaylistItemModel model = controller.songMenuFullModelObj
+                      .value.addtoplaylistItemList.value[index];
+                  return AddtoplaylistItemWidget(
+                    model,
+                  );
+                },
+              ),
             ),
           ),
           SizedBox(height: 44.v),

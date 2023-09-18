@@ -1,9 +1,12 @@
+import 'controller/app_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/presentation/song_menu_full_bottomsheet/song_menu_full_bottomsheet.dart';
+import 'package:tejaswitandel_s_application149/presentation/song_menu_full_bottomsheet/controller/song_menu_full_controller.dart';
 import 'package:tejaswitandel_s_application149/presentation/playlist_bottomsheet/playlist_bottomsheet.dart';
+import 'package:tejaswitandel_s_application149/presentation/playlist_bottomsheet/controller/playlist_controller.dart';
 
-class AppNavigationScreen extends StatelessWidget {
+class AppNavigationScreen extends GetWidget<AppNavigationController> {
   const AppNavigationScreen({Key? key}) : super(key: key);
 
   @override
@@ -23,7 +26,7 @@ class AppNavigationScreen extends StatelessWidget {
                             child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20.h, vertical: 10.v),
-                                child: Text("App Navigation",
+                                child: Text("lbl_app_navigation".tr,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: appTheme.black900,
@@ -34,8 +37,7 @@ class AppNavigationScreen extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             child: Padding(
                                 padding: EdgeInsets.only(left: 20.h),
-                                child: Text(
-                                    "Check your app's UI from the below demo screens of your app.",
+                                child: Text("msg_check_your_app_s".tr,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: appTheme.blueGray40002,
@@ -55,7 +57,7 @@ class AppNavigationScreen extends StatelessWidget {
                               child: Column(children: [
                                 GestureDetector(
                                     onTap: () {
-                                      onTapAlbums(context);
+                                      onTapAlbums();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -66,7 +68,7 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("Albums",
+                                                  child: Text("lbl_albums".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -84,7 +86,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapHomePageContainer(context);
+                                      onTapHomePageContainer();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -96,7 +98,8 @@ class AppNavigationScreen extends StatelessWidget {
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
                                                   child: Text(
-                                                      "Home Page - Container",
+                                                      "msg_home_page_container"
+                                                          .tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -114,7 +117,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapSongMenuFull(context);
+                                      onTapSongMenuFull();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -125,7 +128,8 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("Song Menu Full",
+                                                  child: Text(
+                                                      "lbl_song_menu_full".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -143,7 +147,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapPlaylist(context);
+                                      onTapPlaylist();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -154,7 +158,7 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("Playlist",
+                                                  child: Text("lbl_playlist".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -172,7 +176,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapSetting(context);
+                                      onTapSetting();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -183,7 +187,7 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("Setting",
+                                                  child: Text("lbl_setting".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -201,7 +205,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapProfile(context);
+                                      onTapProfile();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -212,7 +216,7 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("Profile",
+                                                  child: Text("lbl_profile".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -230,7 +234,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapArtist(context);
+                                      onTapArtist();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -241,7 +245,7 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("Artist",
+                                                  child: Text("lbl_artist".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -259,7 +263,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapAlbum(context);
+                                      onTapAlbum();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -270,7 +274,7 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("Album",
+                                                  child: Text("lbl_album".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -288,7 +292,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapList(context);
+                                      onTapList();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -299,7 +303,7 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("List",
+                                                  child: Text("lbl_list".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -317,7 +321,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapLogin(context);
+                                      onTapLogin();
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -328,7 +332,7 @@ class AppNavigationScreen extends StatelessWidget {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 20.h,
                                                       vertical: 10.v),
-                                                  child: Text("Login",
+                                                  child: Text("lbl_login".tr,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -349,96 +353,118 @@ class AppNavigationScreen extends StatelessWidget {
   }
 
   /// Navigates to the albumsScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the albumsScreen.
-  onTapAlbums(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.albumsScreen);
+
+  /// When the action is triggered, this function uses the [Get] package to
+  /// push the named route for the albumsScreen.
+  onTapAlbums() {
+    Get.toNamed(
+      AppRoutes.albumsScreen,
+    );
   }
 
   /// Navigates to the homePageContainerScreen when the action is triggered.
+
+  /// When the action is triggered, this function uses the [Get] package to
+  /// push the named route for the homePageContainerScreen.
+  onTapHomePageContainer() {
+    Get.toNamed(
+      AppRoutes.homePageContainerScreen,
+    );
+  }
+
+  /// Displays a scrollable bottom sheet widget using the [Get] package
+  /// and the [SongMenuFullBottomsheet] widget.
   ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the homePageContainerScreen.
-  onTapHomePageContainer(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homePageContainerScreen);
+  /// The bottom sheet is controlled by the [SongMenuFullController]
+  /// and is displayed using the [Get.bottomSheet] method with
+  /// [isScrollControlled] set to true.
+
+  onTapSongMenuFull() {
+    Get.bottomSheet(
+      SongMenuFullBottomsheet(
+        Get.put(
+          SongMenuFullController(),
+        ),
+      ),
+      isScrollControlled: true,
+    );
   }
 
-  /// Shows a modal bottom sheet with [SongMenuFullBottomsheet]
-  /// widget content.
-  /// The sheet is displayed on top of the current view with scrolling enabled if
-  /// content exceeds viewport height.
-  onTapSongMenuFull(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (_) => SongMenuFullBottomsheet(),
-        isScrollControlled: true);
-  }
+  /// Displays a scrollable bottom sheet widget using the [Get] package
+  /// and the [PlaylistBottomsheet] widget.
+  ///
+  /// The bottom sheet is controlled by the [PlaylistController]
+  /// and is displayed using the [Get.bottomSheet] method with
+  /// [isScrollControlled] set to true.
 
-  /// Shows a modal bottom sheet with [PlaylistBottomsheet]
-  /// widget content.
-  /// The sheet is displayed on top of the current view with scrolling enabled if
-  /// content exceeds viewport height.
-  onTapPlaylist(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (_) => PlaylistBottomsheet(),
-        isScrollControlled: true);
+  onTapPlaylist() {
+    Get.bottomSheet(
+      PlaylistBottomsheet(
+        Get.put(
+          PlaylistController(),
+        ),
+      ),
+      isScrollControlled: true,
+    );
   }
 
   /// Navigates to the settingScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the settingScreen.
-  onTapSetting(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.settingScreen);
+
+  /// When the action is triggered, this function uses the [Get] package to
+  /// push the named route for the settingScreen.
+  onTapSetting() {
+    Get.toNamed(
+      AppRoutes.settingScreen,
+    );
   }
 
   /// Navigates to the profileScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the profileScreen.
-  onTapProfile(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.profileScreen);
+
+  /// When the action is triggered, this function uses the [Get] package to
+  /// push the named route for the profileScreen.
+  onTapProfile() {
+    Get.toNamed(
+      AppRoutes.profileScreen,
+    );
   }
 
   /// Navigates to the artistScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the artistScreen.
-  onTapArtist(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.artistScreen);
+
+  /// When the action is triggered, this function uses the [Get] package to
+  /// push the named route for the artistScreen.
+  onTapArtist() {
+    Get.toNamed(
+      AppRoutes.artistScreen,
+    );
   }
 
   /// Navigates to the albumScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the albumScreen.
-  onTapAlbum(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.albumScreen);
+
+  /// When the action is triggered, this function uses the [Get] package to
+  /// push the named route for the albumScreen.
+  onTapAlbum() {
+    Get.toNamed(
+      AppRoutes.albumScreen,
+    );
   }
 
   /// Navigates to the listScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the listScreen.
-  onTapList(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.listScreen);
+
+  /// When the action is triggered, this function uses the [Get] package to
+  /// push the named route for the listScreen.
+  onTapList() {
+    Get.toNamed(
+      AppRoutes.listScreen,
+    );
   }
 
   /// Navigates to the loginScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the loginScreen.
-  onTapLogin(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.loginScreen);
+
+  /// When the action is triggered, this function uses the [Get] package to
+  /// push the named route for the loginScreen.
+  onTapLogin() {
+    Get.toNamed(
+      AppRoutes.loginScreen,
+    );
   }
 }

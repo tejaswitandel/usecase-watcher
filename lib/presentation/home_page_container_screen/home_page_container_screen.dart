@@ -1,3 +1,4 @@
+import 'controller/home_page_container_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 import 'package:tejaswitandel_s_application149/presentation/artists_page/artists_page.dart';
@@ -6,11 +7,8 @@ import 'package:tejaswitandel_s_application149/presentation/home_page/home_page.
 import 'package:tejaswitandel_s_application149/presentation/top_playlists_page/top_playlists_page.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_bottom_bar.dart';
 
-// ignore_for_file: must_be_immutable
-class HomePageContainerScreen extends StatelessWidget {
-  HomePageContainerScreen({Key? key}) : super(key: key);
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+class HomePageContainerScreen extends GetWidget<HomePageContainerController> {
+  const HomePageContainerScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +16,14 @@ class HomePageContainerScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             body: Navigator(
-                key: navigatorKey,
+                key: Get.nestedKey(1),
                 initialRoute: AppRoutes.homePage,
-                onGenerateRoute: (routeSetting) => PageRouteBuilder(
-                    pageBuilder: (ctx, ani, ani1) =>
-                        getCurrentPage(routeSetting.name!),
-                    transitionDuration: Duration(seconds: 0))),
+                onGenerateRoute: (routeSetting) => GetPageRoute(
+                    page: () => getCurrentPage(routeSetting.name!),
+                    transition: Transition.noTransition)),
             bottomNavigationBar:
                 CustomBottomBar(onChanged: (BottomBarEnum type) {
-              Navigator.pushNamed(
-                  navigatorKey.currentContext!, getCurrentRoute(type));
+              Get.toNamed(getCurrentRoute(type), id: 1);
             })));
   }
 

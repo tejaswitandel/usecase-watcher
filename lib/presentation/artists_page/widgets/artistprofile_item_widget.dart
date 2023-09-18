@@ -1,12 +1,20 @@
+import '../controller/artists_controller.dart';
+import '../models/artistprofile_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
 
 // ignore: must_be_immutable
 class ArtistprofileItemWidget extends StatelessWidget {
-  const ArtistprofileItemWidget({Key? key})
-      : super(
+  ArtistprofileItemWidget(
+    this.artistprofileItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  ArtistprofileItemModel artistprofileItemModelObj;
+
+  var controller = Get.find<ArtistsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +40,18 @@ class ArtistprofileItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Lorn",
-                style: theme.textTheme.titleMedium,
+              Obx(
+                () => Text(
+                  artistprofileItemModelObj.userName!.value,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleMedium,
+                ),
               ),
               SizedBox(height: 5.v),
               Row(
                 children: [
                   Text(
-                    "843 tracks",
+                    "lbl_843_tracks".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                   Opacity(
@@ -63,9 +74,12 @@ class ArtistprofileItemWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 5.h),
-                    child: Text(
-                      "23 albums",
-                      style: theme.textTheme.bodyLarge,
+                    child: Obx(
+                      () => Text(
+                        artistprofileItemModelObj.albumCount!.value,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodyLarge,
+                      ),
                     ),
                   ),
                 ],

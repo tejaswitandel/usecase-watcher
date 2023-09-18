@@ -1,17 +1,16 @@
+import 'controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/core/app_export.dart';
+import 'package:tejaswitandel_s_application149/core/utils/validation_functions.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_elevated_button.dart';
 import 'package:tejaswitandel_s_application149/widgets/custom_text_form_field.dart';
 
-class LoginScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class LoginScreen extends GetWidget<LoginController> {
   LoginScreen({Key? key})
       : super(
           key: key,
         );
-
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -21,8 +20,8 @@ class LoginScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme.colorScheme.secondaryContainer,
         resizeToAvoidBottomInset: false,
+        backgroundColor: theme.colorScheme.secondaryContainer,
         body: Form(
           key: _formKey,
           child: Container(
@@ -37,33 +36,47 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Spacer(),
                 Text(
-                  "Sign in",
+                  "lbl_sign_in".tr,
                   style: theme.textTheme.headlineMedium,
                 ),
                 SizedBox(height: 28.v),
                 CustomTextFormField(
-                  controller: emailController,
-                  hintText: "Email",
+                  controller: controller.emailController,
+                  hintText: "lbl_email".tr,
                   textInputType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null ||
+                        (!isValidEmail(value, isRequired: true))) {
+                      return "Please enter valid email";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(height: 23.v),
                 CustomTextFormField(
-                  controller: passwordController,
-                  hintText: "Password",
+                  controller: controller.passwordController,
+                  hintText: "lbl_password".tr,
                   textInputAction: TextInputAction.done,
                   textInputType: TextInputType.visiblePassword,
+                  validator: (value) {
+                    if (value == null ||
+                        (!isValidPassword(value, isRequired: true))) {
+                      return "Please enter valid password";
+                    }
+                    return null;
+                  },
                   obscureText: true,
                 ),
                 SizedBox(height: 23.v),
                 CustomElevatedButton(
                   height: 51.v,
-                  text: "Sign in",
+                  text: "lbl_sign_in".tr,
                   buttonStyle: CustomButtonStyles.fillWhiteATL5,
                   buttonTextStyle: CustomTextStyles.bodyLargeBlack900,
                 ),
                 SizedBox(height: 35.v),
                 Text(
-                  "Forgot your login or password?",
+                  "msg_forgot_your_login".tr,
                   style: theme.textTheme.bodyMedium,
                 ),
               ],
@@ -73,7 +86,7 @@ class LoginScreen extends StatelessWidget {
         bottomNavigationBar: CustomElevatedButton(
           height: 25.v,
           width: 114.h,
-          text: "Create account",
+          text: "lbl_create_account".tr,
           margin: EdgeInsets.only(
             left: 138.h,
             right: 138.h,

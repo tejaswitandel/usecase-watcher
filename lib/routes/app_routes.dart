@@ -1,13 +1,22 @@
-import 'package:flutter/material.dart';
 import 'package:tejaswitandel_s_application149/presentation/albums_screen/albums_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/albums_screen/binding/albums_binding.dart';
 import 'package:tejaswitandel_s_application149/presentation/home_page_container_screen/home_page_container_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/home_page_container_screen/binding/home_page_container_binding.dart';
 import 'package:tejaswitandel_s_application149/presentation/setting_screen/setting_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/setting_screen/binding/setting_binding.dart';
 import 'package:tejaswitandel_s_application149/presentation/profile_screen/profile_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/profile_screen/binding/profile_binding.dart';
 import 'package:tejaswitandel_s_application149/presentation/artist_screen/artist_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/artist_screen/binding/artist_binding.dart';
 import 'package:tejaswitandel_s_application149/presentation/album_screen/album_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/album_screen/binding/album_binding.dart';
 import 'package:tejaswitandel_s_application149/presentation/list_screen/list_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/list_screen/binding/list_binding.dart';
 import 'package:tejaswitandel_s_application149/presentation/login_screen/login_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/login_screen/binding/login_binding.dart';
 import 'package:tejaswitandel_s_application149/presentation/app_navigation_screen/app_navigation_screen.dart';
+import 'package:tejaswitandel_s_application149/presentation/app_navigation_screen/binding/app_navigation_binding.dart';
+import 'package:get/get.dart';
 
 class AppRoutes {
   static const String albumsScreen = '/albums_screen';
@@ -36,15 +45,78 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
-  static Map<String, WidgetBuilder> routes = {
-    albumsScreen: (context) => AlbumsScreen(),
-    homePageContainerScreen: (context) => HomePageContainerScreen(),
-    settingScreen: (context) => SettingScreen(),
-    profileScreen: (context) => ProfileScreen(),
-    artistScreen: (context) => ArtistScreen(),
-    albumScreen: (context) => AlbumScreen(),
-    listScreen: (context) => ListScreen(),
-    loginScreen: (context) => LoginScreen(),
-    appNavigationScreen: (context) => AppNavigationScreen()
-  };
+  static const String initialRoute = '/initialRoute';
+
+  static List<GetPage> pages = [
+    GetPage(
+      name: albumsScreen,
+      page: () => AlbumsScreen(),
+      bindings: [
+        AlbumsBinding(),
+      ],
+    ),
+    GetPage(
+      name: homePageContainerScreen,
+      page: () => HomePageContainerScreen(),
+      bindings: [
+        HomePageContainerBinding(),
+      ],
+    ),
+    GetPage(
+      name: settingScreen,
+      page: () => SettingScreen(),
+      bindings: [
+        SettingBinding(),
+      ],
+    ),
+    GetPage(
+      name: profileScreen,
+      page: () => ProfileScreen(),
+      bindings: [
+        ProfileBinding(),
+      ],
+    ),
+    GetPage(
+      name: artistScreen,
+      page: () => ArtistScreen(),
+      bindings: [
+        ArtistBinding(),
+      ],
+    ),
+    GetPage(
+      name: albumScreen,
+      page: () => AlbumScreen(),
+      bindings: [
+        AlbumBinding(),
+      ],
+    ),
+    GetPage(
+      name: listScreen,
+      page: () => ListScreen(),
+      bindings: [
+        ListBinding(),
+      ],
+    ),
+    GetPage(
+      name: loginScreen,
+      page: () => LoginScreen(),
+      bindings: [
+        LoginBinding(),
+      ],
+    ),
+    GetPage(
+      name: appNavigationScreen,
+      page: () => AppNavigationScreen(),
+      bindings: [
+        AppNavigationBinding(),
+      ],
+    ),
+    GetPage(
+      name: initialRoute,
+      page: () => AlbumsScreen(),
+      bindings: [
+        AlbumsBinding(),
+      ],
+    )
+  ];
 }

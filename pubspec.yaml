@@ -6,6 +6,9 @@ environment:
 dependencies: 
   flutter: 
     sdk: flutter
+  get: ^4.6.5
+  connectivity_plus: ^2.3.6
+  shared_preferences: ^2.0.15
   cached_network_image: ^3.2.1
   flutter_svg: ^1.1.6
   intl: ^0.18.0
